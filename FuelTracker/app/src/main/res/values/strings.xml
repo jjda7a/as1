@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">FuelTracker</string>
     <string name="action_settings">Settings</string>
+    <string name="edit_message">New Entry: </string>
+    <string name="save">Save Entry</string>
+    <string name="clear">Cancel Entry</string>
+    <string name="save_edit">Save Edit</string>
+    <string name="clear_edit">Cancel Edit</string>
+    <string name="add_new">Add New Entry</string>
+    <string name="clear_entries">Clear All Entries</string>
 </resources>
