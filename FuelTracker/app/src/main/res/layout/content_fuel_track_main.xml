@@ -13,8 +13,10 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="318dp"
-        android:id="@+id/listView"
-        android:background="#ffffff" />
+        android:id="@+id/logentrylist"
+        android:background="#ffffff"
+        android:clickable="false"
+        android:contextClickable="false" />
 
     <TextView
         android:layout_width="match_parent"

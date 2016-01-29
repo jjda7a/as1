@@ -18,8 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NewEntry" />
-        <activity android:name=".ListEntryEdit"></activity>
+        <activity android:name=".NewEntry"
+            android:parentActivityName=".FuelTrackMain"/>
+        <activity android:name=".ListEntryEdit"
+            android:parentActivityName=".FuelTrackMain"></activity>
     </application>
 
 </manifest>

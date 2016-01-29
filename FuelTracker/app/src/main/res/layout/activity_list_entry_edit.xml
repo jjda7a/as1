@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="10dp"
-        android:text="Odometer value:"/>
+        android:text="Odometer value (km):"/>
     <EditText
         android:id="@+id/kmedit"
         android:layout_width="fill_parent"
@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="10dp"
-        android:text="Fuel Amount: "/>
+        android:text="Fuel Amount (L): "/>
     <EditText
         android:id="@+id/fuelamountedit"
         android:layout_width="fill_parent"
@@ -70,7 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="10dp"
-        android:text="Unit Cost:"/>
+        android:text="Unit Cost (Cents/L):"/>
     <EditText
         android:id="@+id/unitcostedit"
         android:layout_width="fill_parent"
