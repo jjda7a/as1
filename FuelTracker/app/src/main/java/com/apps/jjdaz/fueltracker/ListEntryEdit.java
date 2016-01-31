@@ -8,7 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class ListEntryEdit extends AppCompatActivity {
+import java.io.Serializable;
+
+public class ListEntryEdit extends AppCompatActivity implements Serializable{
     private EditText datetext;
     private EditText stationtext;
     private EditText odometertext;
@@ -21,7 +23,9 @@ public class ListEntryEdit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_entry_edit);
         //Retrieve log item passed
-        LogEntry editLog = (LogEntry) getIntent().getSerializableExtra("logItemEdit");
+        //Referenced from http://www.101apps.co.za/index.php/articles/passing-objects-between-activities.html
+        Intent receiveItem = getIntent();
+        LogEntry editLog = (LogEntry) receiveItem.getSerializableExtra("logItemEdit");
 
 
         datetext = (EditText) findViewById(R.id.dateedit);

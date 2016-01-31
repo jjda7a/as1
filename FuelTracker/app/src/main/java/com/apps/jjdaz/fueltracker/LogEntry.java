@@ -2,10 +2,12 @@ package com.apps.jjdaz.fueltracker;
 
 import android.widget.EditText;
 
+import java.io.Serializable;
+
 /**
  * Created by jjdaz on 2016-01-27.
  */
-public class LogEntry {
+public class LogEntry implements Serializable {
     private EntryDate entryDate;
     private Fuel fuel;
     private Station station;

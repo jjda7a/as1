@@ -1,10 +1,12 @@
 package com.apps.jjdaz.fueltracker;
 
+import java.io.Serializable;
+
 /**
  * Created by jjdaz on 2016-01-27.
  */
 
-public class Fuel {
+public class Fuel implements Serializable {
     private Float unitCost;
     private Float amount;
 

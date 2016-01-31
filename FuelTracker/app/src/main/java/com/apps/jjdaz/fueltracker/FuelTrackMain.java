@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -65,12 +66,15 @@ public class FuelTrackMain extends AppCompatActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(FuelTrackMain.this, ListEntryEdit.class);
-                //LogEntry item = adapter.getItem(position);
-                LogEntry item = logs.get(position);
+                Intent passLogItem = new Intent(FuelTrackMain.this, ListEntryEdit.class);
+                LogEntry item = adapter.getItem(position);
+                //LogEntry item = logs.get(position);
+
+
+                //Toast.makeText(getApplicationContext(),item.getEntryDate(), Toast.LENGTH_LONG).show();
                 //PROBLEM SENDING ITEM HERE
-                intent.putExtra("logItemEdit", (Serializable) item);
-                startActivity(intent);
+                passLogItem.putExtra("logItemEdit", item);
+                startActivity(passLogItem);
 
             }
         });
