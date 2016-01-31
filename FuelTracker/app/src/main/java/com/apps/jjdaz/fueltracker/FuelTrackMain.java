@@ -66,7 +66,9 @@ public class FuelTrackMain extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(FuelTrackMain.this, ListEntryEdit.class);
-                LogEntry item = adapter.getItem(position);
+                //LogEntry item = adapter.getItem(position);
+                LogEntry item = logs.get(position);
+                //PROBLEM SENDING ITEM HERE
                 intent.putExtra("logItemEdit", (Serializable) item);
                 startActivity(intent);
 

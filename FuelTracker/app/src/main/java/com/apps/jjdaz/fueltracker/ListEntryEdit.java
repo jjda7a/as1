@@ -31,9 +31,13 @@ public class ListEntryEdit extends AppCompatActivity {
         amounttext = (EditText) findViewById(R.id.fuelamountedit);
         unitcosttext = (EditText) findViewById(R.id.unitcostedit);
 
+        //Set text spaces with previously entered log data
         datetext.setText(editLog.getEntryDate(), TextView.BufferType.EDITABLE);
-
-        //Initialize edittext spaces to contain values of desired log entry
+        stationtext.setText(editLog.getStation(), TextView.BufferType.EDITABLE);
+        odometertext.setText(editLog.getOdometer().toString(), TextView.BufferType.EDITABLE);
+        gradetext.setText(editLog.getFuelType(), TextView.BufferType.EDITABLE);
+        amounttext.setText(editLog.getFuelAmount().toString(), TextView.BufferType.EDITABLE);
+        unitcosttext.setText(editLog.getFuelUnitCost().toString(), TextView.BufferType.EDITABLE);
 
         Button saveEdit = (Button) findViewById(R.id.saveedit);
         Button cancelEdit = (Button) findViewById(R.id.canceledit);

@@ -7,13 +7,12 @@ package com.apps.jjdaz.fueltracker;
 public class Fuel {
     private Float unitCost;
     private Float amount;
-    private Float cost;
+
     private String type;
 
     public Fuel(Float unitCost, Float amount, String type) {
         this.unitCost = unitCost;
         this.amount = amount;
-        this.cost = cost;
         this.type = type;
     }
 
@@ -22,7 +21,6 @@ public class Fuel {
         this.unitCost = unitCost;
         this.amount = amount;
         this.type = type;
-        this.cost = amount*unitCost;
     }
 
     public Float getUnitCost() {
@@ -42,12 +40,11 @@ public class Fuel {
     }
 
     public Float getCost() {
+        Float cost = (amount*unitCost)/100;
         return cost;
     }
 
-    public void setCost(Float cost) {
-        this.cost = cost;
-    }
+
 
     public String getType() {
         return type;
