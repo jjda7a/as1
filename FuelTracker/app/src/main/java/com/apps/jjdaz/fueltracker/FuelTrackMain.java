@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +23,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
@@ -32,16 +34,21 @@ import com.google.gson.reflect.TypeToken;
 public class FuelTrackMain extends AppCompatActivity {
     //implement data storage in a file labelled file.sav
     private static final String FILENAME = "file.sav";
-    private ListView logEntryList;
 
+    //List view
+    private ListView logEntryList;
+    //Array for listview
     private static ArrayList<LogEntry> logs = new ArrayList<LogEntry>();
 
     private ArrayAdapter<LogEntry> adapter;
     private Float totalFuelCost;
 
+
+
     // Activity should display a list of all the entries, and a calculated value of the total cost from the entries.
     // Contains 2 buttons, one that goes opens another activity where user enters information for a new entry.
     // Second button clears all current entries. (Optional)
+
 
     public static ArrayList<LogEntry> getLogs() {
         return logs;
@@ -52,6 +59,20 @@ public class FuelTrackMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fuel_track_main);
         logEntryList = (ListView) findViewById(R.id.logentrylist);
+        //List items start activity with info on item
+        //Reference code from http://stackoverflow.com/questions/21295328/android-listview-with-onclick-items by Lena Bru
+        logEntryList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(FuelTrackMain.this, ListEntryEdit.class);
+                LogEntry item = adapter.getItem(position);
+                intent.putExtra("logItemEdit", (Serializable) item);
+                startActivity(intent);
+
+            }
+        });
+
         Button newEntryButton = (Button) findViewById(R.id.addnewbutton);
         Button ClearEntryButton = (Button) findViewById(R.id.clearall);
 
@@ -125,5 +146,6 @@ public class FuelTrackMain extends AppCompatActivity {
             throw new RuntimeException();
         }
     }
+
 
 }

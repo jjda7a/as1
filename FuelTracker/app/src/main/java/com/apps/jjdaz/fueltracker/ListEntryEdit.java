@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class ListEntryEdit extends AppCompatActivity {
     private EditText datetext;
@@ -19,6 +20,9 @@ public class ListEntryEdit extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_entry_edit);
+        //Retrieve log item passed
+        LogEntry editLog = (LogEntry) getIntent().getSerializableExtra("logItemEdit");
+
 
         datetext = (EditText) findViewById(R.id.dateedit);
         stationtext = (EditText) findViewById(R.id.stationedit);
@@ -26,6 +30,8 @@ public class ListEntryEdit extends AppCompatActivity {
         gradetext = (EditText) findViewById(R.id.fueltypeedit);
         amounttext = (EditText) findViewById(R.id.fuelamountedit);
         unitcosttext = (EditText) findViewById(R.id.unitcostedit);
+
+        datetext.setText(editLog.getEntryDate(), TextView.BufferType.EDITABLE);
 
         //Initialize edittext spaces to contain values of desired log entry
 

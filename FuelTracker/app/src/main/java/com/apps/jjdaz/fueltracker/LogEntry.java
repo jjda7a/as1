@@ -43,20 +43,21 @@ public class LogEntry {
         fuel.setType(grade);
     }
 
-    public EntryDate getEntryDate() {
-        return entryDate;
+    public String getEntryDate() {
+        return entryDate.getEntryDate();
     }
 
-    public Fuel getFuel() {
-        return fuel;
+    public Float getFuelUnitCost() { return fuel.getUnitCost(); }
+    public Float getFuelAmount() { return fuel.getAmount();}
+    public Float getFuelCost() { return fuel.getCost(); }
+    public String getFuelType() { return fuel.getType();}
+
+    public String getStation() {
+        return station.getName();
     }
 
-    public Station getStation() {
-        return station;
-    }
-
-    public Odometer getOdometer() {
-        return odometer;
+    public Float getOdometer() {
+        return odometer.getDistance();
     }
 
     @Override
