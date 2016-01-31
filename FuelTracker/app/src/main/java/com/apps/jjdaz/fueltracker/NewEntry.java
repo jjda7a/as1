@@ -15,12 +15,6 @@ public class NewEntry extends AppCompatActivity {
     //Raise exceptions when invalid inputs are entered.
     //"Cancel Entry" button returns user to main activity window, with no inputs saved
     //"Save Entry" button validates and takes in all inputs and stores it into a new logEntry object, which is saved into
-    private LogEntry newLog;
-
-    private Fuel fuelEntry;
-    private EntryDate dateEntry;
-    private Station stationEntry;
-    private Odometer odometerEntry;
 
     private EditText datetext;
     private EditText stationtext;
@@ -31,17 +25,17 @@ public class NewEntry extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_new_entry);
+        FuelTrackMain.getLogs();
+
         datetext = (EditText) findViewById(R.id.dateentry);
         stationtext = (EditText) findViewById(R.id.stationentry);
         odometertext = (EditText) findViewById(R.id.kmentry);
         gradetext = (EditText) findViewById(R.id.fueltypeentry);
         amounttext = (EditText) findViewById(R.id.fuelamountentry);
         unitcosttext = (EditText) findViewById(R.id.unitcostentry);
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_entry);
-        FuelTrackMain.getLogs();
-
         Button saveEntry = (Button) findViewById(R.id.save);
         Button cancelEntry = (Button) findViewById(R.id.cancel);
 
@@ -49,7 +43,7 @@ public class NewEntry extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 setResult(RESULT_OK);
-
+                //ERROR BEING TRIGGERED HERE
                 String dateText = datetext.getText().toString();
                 String stationText = stationtext.getText().toString();
                 Float odometerText = Float.valueOf(odometertext.getText().toString());
@@ -57,14 +51,15 @@ public class NewEntry extends AppCompatActivity {
                 Float amountText = Float.valueOf(amounttext.getText().toString());
                 Float unitcostText = Float.valueOf(unitcosttext.getText().toString());
 
+                //Create new logEntry and add it to the log list
                 Fuel fuelEntry = new Fuel(amountText, unitcostText, gradeText);
                 EntryDate dateEntry = new EntryDate(dateText);
                 Station stationEntry = new Station(stationText);
                 Odometer odometerEntry = new Odometer(odometerText);
 
                 LogEntry newLog = new LogEntry(dateEntry, fuelEntry, stationEntry, odometerEntry);
-
                 FuelTrackMain.getLogs().add(newLog);
+
                 startActivity(new Intent(NewEntry.this, FuelTrackMain.class));
             }
         });

@@ -18,6 +18,7 @@ public class LogEntry {
         this.station = station;
         this.odometer = odometer;
     }
+
     public void modifyDate(String newDate){
         entryDate.setEntryDate(newDate);
     }
@@ -56,5 +57,10 @@ public class LogEntry {
 
     public Odometer getOdometer() {
         return odometer;
+    }
+
+    @Override
+    public String toString() {
+        return entryDate.getEntryDate() +"|" + station.getName();
     }
 }

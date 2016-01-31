@@ -47,7 +47,6 @@ public class FuelTrackMain extends AppCompatActivity {
         return logs;
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +57,6 @@ public class FuelTrackMain extends AppCompatActivity {
 
         //Send Array list to be edited in NewEntry activity
         //Source code from Ravind Maurya; http://stackoverflow.com/questions/21250339/how-to-pass-arraylistcustomeobject-from-one-activity-to-another 2016-01-29
-
 
         //implement buttons on main activity
         //newEntry button goes to new entry activity
@@ -81,17 +79,16 @@ public class FuelTrackMain extends AppCompatActivity {
         });
     }
 
-
     @Override
     protected void onStart() {
         // TODO Auto-generated method stub
         super.onStart();
         saveInFile();
         loadFromFile();
-        // CHeck what this line is for corectness
-        adapter = new ArrayAdapter<LogEntry>(this, R.layout.activity_list_entry_edit, logs);
+        adapter = new ArrayAdapter<LogEntry>(this, R.layout.list_item, logs);
         logEntryList.setAdapter(adapter);
     }
+
     //Code from lonelyTwitter application from Lab sessions
     private void loadFromFile() {
         try {
