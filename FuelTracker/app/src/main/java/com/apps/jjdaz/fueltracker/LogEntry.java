@@ -61,6 +61,6 @@ public class LogEntry {
 
     @Override
     public String toString() {
-        return entryDate.getEntryDate() +"|" + station.getName();
+        return entryDate.getEntryDate() +" | " + station.getName() +" | Fuel Cost: " +fuel.getCost();
     }
 }
