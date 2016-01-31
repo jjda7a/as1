@@ -74,6 +74,7 @@ public class FuelTrackMain extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(),item.getEntryDate(), Toast.LENGTH_LONG).show();
                 //PROBLEM SENDING ITEM HERE
                 passLogItem.putExtra("logItemEdit", item);
+                passLogItem.putExtra("logKey", position);
                 startActivity(passLogItem);
 
             }

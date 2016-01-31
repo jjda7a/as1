@@ -25,8 +25,8 @@ public class ListEntryEdit extends AppCompatActivity implements Serializable{
         //Retrieve log item passed
         //Referenced from http://www.101apps.co.za/index.php/articles/passing-objects-between-activities.html
         Intent receiveItem = getIntent();
-        LogEntry editLog = (LogEntry) receiveItem.getSerializableExtra("logItemEdit");
-
+        //final LogEntry editLog = (LogEntry) receiveItem.getSerializableExtra("logItemEdit");
+        final LogEntry editLog = FuelTrackMain.getLogs().get((Integer) receiveItem.getSerializableExtra("logKey"));
 
         datetext = (EditText) findViewById(R.id.dateedit);
         stationtext = (EditText) findViewById(R.id.stationedit);
@@ -50,6 +50,22 @@ public class ListEntryEdit extends AppCompatActivity implements Serializable{
             @Override
             public void onClick(View v) {
                 setResult(RESULT_OK);
+
+                String dateText = datetext.getText().toString();
+                String stationText = stationtext.getText().toString();
+                Float odometerText = Float.valueOf(odometertext.getText().toString());
+                String gradeText = gradetext.getText().toString();
+                Float amountText = Float.valueOf(amounttext.getText().toString());
+                Float unitCostText = Float.valueOf(unitcosttext.getText().toString());
+
+                editLog.modifyDate(dateText);
+                editLog.modifyStation(stationText);
+                editLog.modifyOdometer(odometerText);
+                editLog.modifyFuelGrade(gradeText);
+                editLog.modifyFuelAmount(amountText);
+                editLog.modifyUnitCost(unitCostText);
+
+                //update log entries
 
                 startActivity(new Intent(ListEntryEdit.this, FuelTrackMain.class));
             }
