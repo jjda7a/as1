@@ -4,37 +4,17 @@ package com.apps.jjdaz.fueltracker;
  * Created by jjdaz on 2016-01-28.
  */
 public class EntryDate {
-    private Integer day;
-    private Integer month;
-    private Integer year;
+    private String entryDate;
 
-    public EntryDate(Integer day, Integer month, Integer year) {
-        this.day = day;
-        this.month = month;
-        this.year = year;
+    public EntryDate(String entryDate) {
+        this.entryDate = entryDate;
     }
 
-    public Integer getDay() {
-        return day;
+    public String getEntryDate() {
+        return entryDate;
     }
 
-    public void setDay(Integer day) {
-        this.day = day;
-    }
-
-    public Integer getMonth() {
-        return month;
-    }
-
-    public void setMonth(Integer month) {
-        this.month = month;
-    }
-
-    public Integer getYear() {
-        return year;
-    }
-
-    public void setYear(Integer year) {
-        this.year = year;
+    public void setEntryDate(String entryDate) {
+        this.entryDate = entryDate;
     }
 }

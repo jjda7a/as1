@@ -32,10 +32,10 @@ import com.google.gson.reflect.TypeToken;
 public class FuelTrackMain extends AppCompatActivity {
     //implement data storage in a file labelled file.sav
     private static final String FILENAME = "file.sav";
-    private EditText bodyText;
     private ListView logEntryList;
 
-    private ArrayList<LogEntry> logs = new ArrayList<LogEntry>();
+    private static ArrayList<LogEntry> logs = new ArrayList<LogEntry>();
+
     private ArrayAdapter<LogEntry> adapter;
     private Float totalFuelCost;
 
@@ -43,12 +43,15 @@ public class FuelTrackMain extends AppCompatActivity {
     // Contains 2 buttons, one that goes opens another activity where user enters information for a new entry.
     // Second button clears all current entries. (Optional)
 
+    public static ArrayList<LogEntry> getLogs() {
+        return logs;
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fuel_track_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         logEntryList = (ListView) findViewById(R.id.logentrylist);
         Button newEntryButton = (Button) findViewById(R.id.addnewbutton);
         Button ClearEntryButton = (Button) findViewById(R.id.clearall);
@@ -78,33 +81,12 @@ public class FuelTrackMain extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_fuel_track_main, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-
-    }
     @Override
     protected void onStart() {
         // TODO Auto-generated method stub
         super.onStart();
-
+        saveInFile();
         loadFromFile();
         // CHeck what this line is for corectness
         adapter = new ArrayAdapter<LogEntry>(this, R.layout.activity_list_entry_edit, logs);

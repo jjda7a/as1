@@ -10,7 +10,7 @@ public class Fuel {
     private Float cost;
     private String type;
 
-    public Fuel(Float unitCost, Float amount, Float cost, String type) {
+    public Fuel(Float unitCost, Float amount, String type) {
         this.unitCost = unitCost;
         this.amount = amount;
         this.cost = cost;
