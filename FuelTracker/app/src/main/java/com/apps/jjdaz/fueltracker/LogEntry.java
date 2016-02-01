@@ -30,15 +30,15 @@ public class LogEntry implements Serializable {
         station.setName(name);
     }
 
-    public void modifyOdometer(Float kilometer){
+    public void modifyOdometer(Double kilometer){
         odometer.setDistance(kilometer);
     }
 
-    public void modifyUnitCost(Float cost){
+    public void modifyUnitCost(Double cost){
         fuel.setUnitCost(cost);
     }
 
-    public void modifyFuelAmount(Float amount){
+    public void modifyFuelAmount(Double amount){
         fuel.setAmount(amount);
     }
 
@@ -50,16 +50,16 @@ public class LogEntry implements Serializable {
         return entryDate.getEntryDate();
     }
 
-    public Float getFuelUnitCost() { return fuel.getUnitCost(); }
-    public Float getFuelAmount() { return fuel.getAmount();}
-    public Float getFuelCost() { return fuel.getCost(); }
+    public Double getFuelUnitCost() { return fuel.getUnitCost(); }
+    public Double getFuelAmount() { return fuel.getAmount();}
+    public Double getFuelCost() { return fuel.getCost(); }
     public String getFuelType() { return fuel.getType();}
 
     public String getStation() {
         return station.getName();
     }
 
-    public Float getOdometer() {
+    public Double getOdometer() {
         return odometer.getDistance();
     }
 

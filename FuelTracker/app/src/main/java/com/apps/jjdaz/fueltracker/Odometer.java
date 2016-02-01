@@ -6,17 +6,17 @@ import java.io.Serializable;
  * Created by jjdaz on 2016-01-27.
  */
 public class Odometer implements Serializable{
-    private Float distance;
+    private Double distance;
 
-    public Odometer(Float distance) {
+    public Odometer(Double distance) {
         this.distance = distance;
     }
 
-    public Float getDistance() {
+    public Double getDistance() {
         return distance;
     }
 
-    public void setDistance(Float distance) {
+    public void setDistance(Double distance) {
         this.distance = distance;
     }
 }

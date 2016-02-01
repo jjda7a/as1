@@ -42,7 +42,7 @@ public class FuelTrackMain extends AppCompatActivity {
     private static ArrayList<LogEntry> logs = new ArrayList<LogEntry>();
 
     private ArrayAdapter<LogEntry> adapter;
-    private Float totalFuelCost;
+    private Double totalFuelCost;
 
 
 
@@ -153,6 +153,5 @@ public class FuelTrackMain extends AppCompatActivity {
             throw new RuntimeException();
         }
     }
-
 
 }

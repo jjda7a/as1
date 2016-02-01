@@ -53,10 +53,10 @@ public class ListEntryEdit extends AppCompatActivity implements Serializable{
 
                 String dateText = datetext.getText().toString();
                 String stationText = stationtext.getText().toString();
-                Float odometerText = Float.valueOf(odometertext.getText().toString());
+                Double odometerText = Double.valueOf(odometertext.getText().toString());
                 String gradeText = gradetext.getText().toString();
-                Float amountText = Float.valueOf(amounttext.getText().toString());
-                Float unitCostText = Float.valueOf(unitcosttext.getText().toString());
+                Double amountText = Double.valueOf(amounttext.getText().toString());
+                Double unitCostText = Double.valueOf(unitcosttext.getText().toString());
 
                 try {
                     editLog.modifyDate(dateText);

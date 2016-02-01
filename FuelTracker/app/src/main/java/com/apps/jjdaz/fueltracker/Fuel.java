@@ -7,43 +7,43 @@ import java.io.Serializable;
  */
 
 public class Fuel implements Serializable {
-    private Float unitCost;
-    private Float amount;
+    private Double unitCost;
+    private Double amount;
 
     private String type;
 
-    public Fuel(Float unitCost, Float amount, String type) {
+    public Fuel(Double unitCost, Double amount, String type) {
         this.unitCost = unitCost;
         this.amount = amount;
         this.type = type;
     }
 
-    public Fuel(Float unitCost, Float amount) {
+    public Fuel(Double unitCost, Double amount) {
         // set values
         this.unitCost = unitCost;
         this.amount = amount;
         this.type = type;
     }
 
-    public Float getUnitCost() {
+    public Double getUnitCost() {
         return unitCost;
     }
 
-    public void setUnitCost(Float unitCost) {
+    public void setUnitCost(Double unitCost) {
 
         this.unitCost = unitCost;
     }
 
-    public Float getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(Float amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
-    public Float getCost() {
-        Float cost = (amount*unitCost)/100;
+    public Double getCost() {
+        Double cost = (amount*unitCost)/100;
         return cost;
     }
 

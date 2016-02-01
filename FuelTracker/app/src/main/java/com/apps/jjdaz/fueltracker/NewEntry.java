@@ -44,14 +44,16 @@ public class NewEntry extends AppCompatActivity {
             public void onClick(View v) {
                 setResult(RESULT_OK);
                 //ERROR BEING TRIGGERED HERE
+
                 String dateText = datetext.getText().toString();
                 String stationText = stationtext.getText().toString();
-                Float odometerText = Float.valueOf(odometertext.getText().toString());
+                Double odometerText = Double.valueOf(odometertext.getText().toString());
                 String gradeText = gradetext.getText().toString();
-                Float amountText = Float.valueOf(amounttext.getText().toString());
-                Float unitcostText = Float.valueOf(unitcosttext.getText().toString());
+                Double amountText = Double.valueOf(amounttext.getText().toString());
+                Double unitcostText = Double.valueOf(unitcosttext.getText().toString());
 
                 //Create new logEntry and add it to the log list
+
                 Fuel fuelEntry = new Fuel(amountText, unitcostText, gradeText);
                 EntryDate dateEntry = new EntryDate(dateText);
                 Station stationEntry = new Station(stationText);
@@ -77,7 +79,6 @@ public class NewEntry extends AppCompatActivity {
     protected void onStart() {
 
         super.onStart();
-
 
 
     }
