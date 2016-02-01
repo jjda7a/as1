@@ -4,6 +4,7 @@ import android.widget.EditText;
 
 import java.io.InvalidClassException;
 import java.io.Serializable;
+import java.text.DecimalFormat;
 
 /**
  * Created by jjdaz on 2016-01-27.
@@ -70,6 +71,7 @@ public class LogEntry implements Serializable {
 
     @Override
     public String toString() {
-        return entryDate.getEntryDate() +" | " + station.getName() +" | Fuel Cost: $" +fuel.getCost();
+        DecimalFormat decimalFormat = new DecimalFormat("#,###,##0.00");
+        return entryDate.getEntryDate() +" | " + station.getName() +" | Fuel Cost: $" +decimalFormat.format(fuel.getCost());
     }
 }

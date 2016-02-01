@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -26,6 +27,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Serializable;
 import java.lang.reflect.Type;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
@@ -38,6 +40,7 @@ public class FuelTrackMain extends AppCompatActivity {
 
     //List view
     private ListView logEntryList;
+    private TextView totalCostView;
     //Array for listview
     private static ArrayList<LogEntry> logs;
 
@@ -105,6 +108,7 @@ public class FuelTrackMain extends AppCompatActivity {
             public void onClick(View v) {
                 //Additional clear button implementation
                 logs.clear();
+                totalFuelCost = 0.0;
                 adapter.notifyDataSetChanged();
                 saveInFile();
 
@@ -119,6 +123,17 @@ public class FuelTrackMain extends AppCompatActivity {
         loadFromFile();
         adapter = new ArrayAdapter<>(this, R.layout.list_item, logs);
         logEntryList.setAdapter(adapter);
+
+        //Display Total cost
+        totalFuelCost = 0.0;
+        for(int i=0;i<logs.size();i++) {
+            totalFuelCost += logs.get(i).getFuelCost();
+        }
+        DecimalFormat decimalFormat = new DecimalFormat("#,###,##0.00");
+
+        totalCostView = (TextView) findViewById(R.id.Totalcost);
+        totalCostView.setText("Total Fuel Cost: $"+decimalFormat.format(totalFuelCost));
+
     }
 
     //Code from lonelyTwitter application from Lab sessions
