@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -58,29 +59,35 @@ public class ListEntryEdit extends AppCompatActivity implements Serializable{
             @Override
             public void onClick(View v) {
                 setResult(RESULT_OK);
-
-                String dateText = datetext.getText().toString();
-                String stationText = stationtext.getText().toString();
-                String odometerText = odometertext.getText().toString();
-                String gradeText = gradetext.getText().toString();
-                Double amountText = Double.valueOf(amounttext.getText().toString());
-                Double unitCostText = Double.valueOf(unitcosttext.getText().toString());
-
                 try {
+                    //update log entries
+                    String dateText = datetext.getText().toString();
+                    String stationText = stationtext.getText().toString();
+                    String odometerText = odometertext.getText().toString();
+                    String gradeText = gradetext.getText().toString();
+                    Double amountText = Double.valueOf(amounttext.getText().toString());
+                    Double unitCostText = Double.valueOf(unitcosttext.getText().toString());
+
+
                     editLog.modifyDate(dateText);
                     editLog.modifyStation(stationText);
                     editLog.modifyFuelGrade(gradeText);
                     editLog.modifyOdometer(odometerText);
                     editLog.modifyFuelAmount(amountText);
                     editLog.modifyUnitCost(unitCostText);
+                    saveInFile();
+                    startActivity(new Intent(ListEntryEdit.this, FuelTrackMain.class));
                 } catch (InvalidInputException e) {
                     e.printStackTrace();
+                    startActivity(new Intent(ListEntryEdit.this, FuelTrackMain.class));
+                } catch(NumberFormatException e) {
+                    //Catch if user fails to enter a value
+                    Toast.makeText(getApplicationContext(), "Invalid input, entry cancelled.", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(ListEntryEdit.this, FuelTrackMain.class));
+                } catch (NullPointerException e) {
+                    Toast.makeText(getApplicationContext(),"Empty input, entry cancelled.", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(ListEntryEdit.this, FuelTrackMain.class));
                 }
-
-                //update log entries
-                saveInFile();
-
-                startActivity(new Intent(ListEntryEdit.this, FuelTrackMain.class));
             }
         });
 

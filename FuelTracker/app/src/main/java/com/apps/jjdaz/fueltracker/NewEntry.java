@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -50,27 +51,34 @@ public class NewEntry extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 setResult(RESULT_OK);
-                //ERROR BEING TRIGGERED HERE
+                try {
+                    String dateText = datetext.getText().toString();
+                    String stationText = stationtext.getText().toString();
+                    String odometerText = odometertext.getText().toString();
+                    String gradeText = gradetext.getText().toString();
+                    Double amountText = Double.valueOf(amounttext.getText().toString());
+                    Double unitcostText = Double.valueOf(unitcosttext.getText().toString());
 
-                String dateText = datetext.getText().toString();
-                String stationText = stationtext.getText().toString();
-                String odometerText = odometertext.getText().toString();
-                String gradeText = gradetext.getText().toString();
-                Double amountText = Double.valueOf(amounttext.getText().toString());
-                Double unitcostText = Double.valueOf(unitcosttext.getText().toString());
+                    //Create new logEntry and add it to the log list
 
-                //Create new logEntry and add it to the log list
+                    Fuel fuelEntry = new Fuel(amountText, unitcostText, gradeText);
+                    EntryDate dateEntry = new EntryDate(dateText);
+                    Station stationEntry = new Station(stationText);
+                    Odometer odometerEntry = new Odometer(odometerText);
+                    LogEntry newLog = new LogEntry(dateEntry, fuelEntry, stationEntry, odometerEntry);
+                    FuelTrackMain.getLogs().add(newLog);
+                    saveInFile();
+                    startActivity(new Intent(NewEntry.this, FuelTrackMain.class));
 
-                Fuel fuelEntry = new Fuel(amountText, unitcostText, gradeText);
-                EntryDate dateEntry = new EntryDate(dateText);
-                Station stationEntry = new Station(stationText);
-                Odometer odometerEntry = new Odometer(odometerText);
+                } catch(NumberFormatException e) {
+                    //Catch if user fails to enter a value
+                    Toast.makeText(getApplicationContext(),"Invalid input, entry cancelled.", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(NewEntry.this, FuelTrackMain.class));
+                } catch (NullPointerException e) {
+                    Toast.makeText(getApplicationContext(),"Empty input, entry cancelled.", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(NewEntry.this, FuelTrackMain.class));
+                }
 
-                LogEntry newLog = new LogEntry(dateEntry, fuelEntry, stationEntry, odometerEntry);
-                FuelTrackMain.getLogs().add(newLog);
-                saveInFile();
-
-                startActivity(new Intent(NewEntry.this, FuelTrackMain.class));
             }
         });
 
