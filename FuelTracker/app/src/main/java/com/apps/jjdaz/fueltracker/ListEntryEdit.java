@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.InvalidClassException;
 import java.io.Serializable;
 
 public class ListEntryEdit extends AppCompatActivity implements Serializable{
@@ -53,22 +54,22 @@ public class ListEntryEdit extends AppCompatActivity implements Serializable{
 
                 String dateText = datetext.getText().toString();
                 String stationText = stationtext.getText().toString();
-                Double odometerText = Double.valueOf(odometertext.getText().toString());
+                String odometerText = odometertext.getText().toString();
                 String gradeText = gradetext.getText().toString();
                 Double amountText = Double.valueOf(amounttext.getText().toString());
                 Double unitCostText = Double.valueOf(unitcosttext.getText().toString());
 
                 try {
                     editLog.modifyDate(dateText);
+                    editLog.modifyStation(stationText);
+                    editLog.modifyFuelGrade(gradeText);
+                    editLog.modifyOdometer(odometerText);
+                    editLog.modifyFuelAmount(amountText);
+                    editLog.modifyUnitCost(unitCostText);
                 } catch (InvalidInputException e) {
                     e.printStackTrace();
                 }
-                editLog.modifyStation(stationText);
-                editLog.modifyOdometer(odometerText);
-                editLog.modifyFuelGrade(gradeText);
-                editLog.modifyFuelAmount(amountText);
-                editLog.modifyUnitCost(unitCostText);
-
+                
                 //update log entries
 
                 startActivity(new Intent(ListEntryEdit.this, FuelTrackMain.class));

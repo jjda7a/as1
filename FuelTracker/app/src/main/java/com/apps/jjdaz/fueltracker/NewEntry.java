@@ -47,7 +47,7 @@ public class NewEntry extends AppCompatActivity {
 
                 String dateText = datetext.getText().toString();
                 String stationText = stationtext.getText().toString();
-                Double odometerText = Double.valueOf(odometertext.getText().toString());
+                String odometerText = odometertext.getText().toString();
                 String gradeText = gradetext.getText().toString();
                 Double amountText = Double.valueOf(amounttext.getText().toString());
                 Double unitcostText = Double.valueOf(unitcosttext.getText().toString());

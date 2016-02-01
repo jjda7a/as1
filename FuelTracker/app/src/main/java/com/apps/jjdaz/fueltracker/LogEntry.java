@@ -2,6 +2,7 @@ package com.apps.jjdaz.fueltracker;
 
 import android.widget.EditText;
 
+import java.io.InvalidClassException;
 import java.io.Serializable;
 
 /**
@@ -30,8 +31,12 @@ public class LogEntry implements Serializable {
         station.setName(name);
     }
 
-    public void modifyOdometer(Double kilometer){
-        odometer.setDistance(kilometer);
+    public void modifyOdometer(String kilometer) throws InvalidInputException {
+        try {
+            odometer.setDistance(kilometer);
+        } catch (InvalidInputException e) {
+            e.printStackTrace();
+        }
     }
 
     public void modifyUnitCost(Double cost){
@@ -59,7 +64,7 @@ public class LogEntry implements Serializable {
         return station.getName();
     }
 
-    public Double getOdometer() {
+    public String getOdometer() {
         return odometer.getDistance();
     }
 
