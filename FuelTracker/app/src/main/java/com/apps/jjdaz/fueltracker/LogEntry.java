@@ -21,7 +21,8 @@ public class LogEntry implements Serializable {
         this.odometer = odometer;
     }
 
-    public void modifyDate(String newDate){
+    public void modifyDate(String newDate) throws InvalidInputException{
+
         entryDate.setEntryDate(newDate);
     }
 

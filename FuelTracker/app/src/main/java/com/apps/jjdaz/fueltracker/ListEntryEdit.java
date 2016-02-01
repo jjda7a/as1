@@ -58,7 +58,11 @@ public class ListEntryEdit extends AppCompatActivity implements Serializable{
                 Float amountText = Float.valueOf(amounttext.getText().toString());
                 Float unitCostText = Float.valueOf(unitcosttext.getText().toString());
 
-                editLog.modifyDate(dateText);
+                try {
+                    editLog.modifyDate(dateText);
+                } catch (InvalidInputException e) {
+                    e.printStackTrace();
+                }
                 editLog.modifyStation(stationText);
                 editLog.modifyOdometer(odometerText);
                 editLog.modifyFuelGrade(gradeText);

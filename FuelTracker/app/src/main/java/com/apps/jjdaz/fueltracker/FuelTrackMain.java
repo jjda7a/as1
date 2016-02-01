@@ -98,7 +98,7 @@ public class FuelTrackMain extends AppCompatActivity {
         ClearEntryButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                //clear tweets on disk & remove tweets on screen
+                //Additional clear button implementation
                 logs.clear();
                 adapter.notifyDataSetChanged();
                 saveInFile();

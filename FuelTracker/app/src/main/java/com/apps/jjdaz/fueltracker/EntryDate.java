@@ -16,7 +16,14 @@ public class EntryDate implements Serializable{
         return entryDate;
     }
 
-    public void setEntryDate(String entryDate) {
-        this.entryDate = entryDate;
+    public void setEntryDate(String entryDate) throws InvalidInputException{
+        if(entryDate.matches("^(\\d{4}-\\d{2}-\\d{2})$")) {
+            this.entryDate = entryDate;
+        } else {
+            throw new InvalidInputException();
+        }
+
+
+
     }
 }

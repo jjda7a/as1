@@ -30,6 +30,7 @@ public class Fuel implements Serializable {
     }
 
     public void setUnitCost(Float unitCost) {
+
         this.unitCost = unitCost;
     }
 
