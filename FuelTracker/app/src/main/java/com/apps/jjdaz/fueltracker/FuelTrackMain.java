@@ -34,22 +34,25 @@ import com.google.gson.reflect.TypeToken;
 
 public class FuelTrackMain extends AppCompatActivity {
     //implement data storage in a file labelled file.sav
-    private static final String FILENAME = "file.sav";
+    public static final String FILENAME = "file.sav";
 
     //List view
     private ListView logEntryList;
     //Array for listview
-    private static ArrayList<LogEntry> logs = new ArrayList<LogEntry>();
+    private static ArrayList<LogEntry> logs;
 
     private ArrayAdapter<LogEntry> adapter;
     private Double totalFuelCost;
-
 
 
     // Activity should display a list of all the entries, and a calculated value of the total cost from the entries.
     // Contains 2 buttons, one that goes opens another activity where user enters information for a new entry.
     // Second button clears all current entries. (Optional)
 
+
+    public static String getFILENAME() {
+        return FILENAME;
+    }
 
     public static ArrayList<LogEntry> getLogs() {
         return logs;
@@ -59,6 +62,8 @@ public class FuelTrackMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fuel_track_main);
+
+        logs = new ArrayList<>();
         logEntryList = (ListView) findViewById(R.id.logentrylist);
         //List items start activity with info on item
         //Reference code from http://stackoverflow.com/questions/21295328/android-listview-with-onclick-items by Lena Bru
@@ -111,9 +116,8 @@ public class FuelTrackMain extends AppCompatActivity {
     protected void onStart() {
         // TODO Auto-generated method stub
         super.onStart();
-        saveInFile();
         loadFromFile();
-        adapter = new ArrayAdapter<LogEntry>(this, R.layout.list_item, logs);
+        adapter = new ArrayAdapter<>(this, R.layout.list_item, logs);
         logEntryList.setAdapter(adapter);
     }
 

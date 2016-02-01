@@ -7,6 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
+
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 
@@ -61,6 +68,7 @@ public class NewEntry extends AppCompatActivity {
 
                 LogEntry newLog = new LogEntry(dateEntry, fuelEntry, stationEntry, odometerEntry);
                 FuelTrackMain.getLogs().add(newLog);
+                saveInFile();
 
                 startActivity(new Intent(NewEntry.this, FuelTrackMain.class));
             }
@@ -81,5 +89,21 @@ public class NewEntry extends AppCompatActivity {
         super.onStart();
 
 
+    }
+    private void saveInFile() {
+        try {
+            FileOutputStream fos = openFileOutput(FuelTrackMain.getFILENAME(), 0);
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
+            Gson gson = new Gson();
+            gson.toJson(FuelTrackMain.getLogs(), out);
+            out.flush();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            throw new RuntimeException();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            throw new RuntimeException();
+        }
     }
 }

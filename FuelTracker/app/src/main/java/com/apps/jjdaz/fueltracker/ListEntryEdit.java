@@ -8,7 +8,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InvalidClassException;
+import java.io.OutputStreamWriter;
 import java.io.Serializable;
 
 public class ListEntryEdit extends AppCompatActivity implements Serializable{
@@ -69,8 +76,9 @@ public class ListEntryEdit extends AppCompatActivity implements Serializable{
                 } catch (InvalidInputException e) {
                     e.printStackTrace();
                 }
-                
+
                 //update log entries
+                saveInFile();
 
                 startActivity(new Intent(ListEntryEdit.this, FuelTrackMain.class));
             }
@@ -84,5 +92,21 @@ public class ListEntryEdit extends AppCompatActivity implements Serializable{
             }
         });
 
+    }
+    private void saveInFile() {
+        try {
+            FileOutputStream fos = openFileOutput(FuelTrackMain.getFILENAME(), 0);
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
+            Gson gson = new Gson();
+            gson.toJson(FuelTrackMain.getLogs(), out);
+            out.flush();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            throw new RuntimeException();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            throw new RuntimeException();
+        }
     }
 }
